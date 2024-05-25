@@ -2,6 +2,7 @@
 #include "fun.h"
 #include <cstring>
 #include <cctype>
+#include <math.h>
 unsigned int faStr1(const char* str) {
     unsigned int count = 0;
     bool inWord = false;
@@ -85,6 +86,53 @@ unsigned int faStr2(const char* str) {
     return count;
 }
 
-unsigned int faStr3(const char* str) {
-    return 0;
+unsigned int faStr3(const char *str) {
+    enum State { Initial, InWord, Space };
+    State state = Initial;
+    unsigned int wordCount = 0;
+    unsigned int totalLength = 0;
+    unsigned int currentLength = 0;
+
+    while (*str != '\0') {
+        switch (state) {
+            case Initial:
+                if (std::isspace(*str)) {
+                    state = Space;
+                } else {
+                    state = InWord;
+                    currentLength = 1;
+                }
+                break;
+            case InWord:
+                if (std::isspace(*str)) {
+                    state = Space;
+                    ++wordCount;
+                    totalLength += currentLength;
+                    currentLength = 0;
+                } else {
+                    ++currentLength;
+                }
+                break;
+            case Space:
+                if (!std::isspace(*str)) {
+                    state = InWord;
+                    currentLength = 1;
+                }
+                // Если пробел, остаемся в Space
+                break;
+        }
+        ++str;
+    }
+
+    // Проверка последнего слова, если строка не заканчивается пробелом
+    if (state == InWord) {
+        ++wordCount;
+        totalLength += currentLength;
+    }
+
+    if (wordCount == 0) {
+        return 0; // Нет слов в строке
+    }
+
+    return round(static_cast<double>(totalLength) / wordCount);
 }
