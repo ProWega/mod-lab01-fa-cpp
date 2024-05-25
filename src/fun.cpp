@@ -14,8 +14,7 @@ unsigned int faStr1(const char* str) {
             }
             inWord = false;
             containsDigit = false;
-        }
-        else {
+        } else {
             if (std::isdigit(*str)) {
                 containsDigit = true;
             }
@@ -24,7 +23,7 @@ unsigned int faStr1(const char* str) {
         ++str;
     }
 
-    // Проверка последнего слова, если оно было допустимым словом без цифр
+    // РџСЂРѕРІРµСЂРєР° РїРѕСЃР»РµРґРЅРµРіРѕ СЃР»РѕРІР°, РµСЃР»Рё РѕРЅРѕ Р±С‹Р»Рѕ РґРѕРїСѓСЃС‚РёРјС‹Рј СЃР»РѕРІРѕРј Р±РµР· С†РёС„СЂ
     if (inWord && !containsDigit) {
         ++count;
     }
