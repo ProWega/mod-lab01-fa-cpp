@@ -1,8 +1,8 @@
 // Copyright 2024 UNN-IASR
 #include "fun.h"
+#include <math.h>
 #include <cstring>
 #include <cctype>
-#include <math.h>
 unsigned int faStr1(const char* str) {
     unsigned int count = 0;
     bool inWord = false;
