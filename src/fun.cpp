@@ -32,7 +32,8 @@ unsigned int faStr1(const char* str) {
 }
 
 unsigned int faStr2(const char* str) {
-    // Состояния: начальное, слово с заглавной, обнаружен неправ. символ, пробел 
+    // Состояния: начальное, слово с заглавной,
+    // обнаружен неправ. символ, пробел
     enum State { Initial, InWordUpper, InWordInvalid, Space };
     State state = Initial;
     unsigned int count = 0;
@@ -42,23 +43,19 @@ unsigned int faStr2(const char* str) {
         case Initial:
             if (std::isupper(*str) && std::isalpha(*str)) {
                 state = InWordUpper;
-            }
-            else if (std::isspace(*str)) {
+            } else if (std::isspace(*str)) {
                 state = Space;
-            }
-            else {
+            } else {
                 state = InWordInvalid;
             }
             break;
         case InWordUpper:
             if (std::islower(*str) && std::isalpha(*str)) {
                 // остаться в InWordUpper
-            }
-            else if (std::isspace(*str)) {
+            } else if (std::isspace(*str)) {
                 state = Space;
                 ++count; // слово соответствует условиям
-            }
-            else {
+            } else {
                 state = InWordInvalid;
             }
             break;
@@ -71,8 +68,7 @@ unsigned int faStr2(const char* str) {
         case Space:
             if (std::isupper(*str) && std::isalpha(*str)) {
                 state = InWordUpper;
-            }
-            else if (!std::isspace(*str)) {
+            } else if (!std::isspace(*str)) {
                 state = InWordInvalid;
             }
             // остаться в Space если это не другой пробел
