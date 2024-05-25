@@ -3,6 +3,6 @@
 #include "fun.h"
 
 int main() {
-    std::cout << faStr1("H4ello, world!");
+    std::cout << faStr2("Hello world!");
     return 0;
 }
